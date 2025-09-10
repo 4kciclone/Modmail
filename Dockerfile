@@ -34,5 +34,4 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH=/opt/modmail/.venv/bin:$PATH \
     USING_DOCKER=yes
-
-CMD ["python", "bot.py"]
+CMD python -m modmail & gunicorn -w 1 -b 0.0.0.0:8080 "modmail.utils:build_app()"
